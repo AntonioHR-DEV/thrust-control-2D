@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7a7ebb3e755e22142844dbbf7ace8751
+guid: 46c4a3b51b041374ab9f22437a1367e6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5979628931232385003
-    second: Fuel_0
+      213: 2278493257990895945
+    second: coin-11_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 800
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Fuel_0
+      name: coin-11_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 8
-        width: 103
-        height: 112
+        x: 196
+        y: 0
+        width: 91
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: be741ced4d8ebf250800000000000000
-      internalID: 5979628931232385003
+      spriteID: 9497ba1db85de9f10800000000000000
+      internalID: 2278493257990895945
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Fuel_0: 5979628931232385003
+      coin-11_0: 2278493257990895945
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

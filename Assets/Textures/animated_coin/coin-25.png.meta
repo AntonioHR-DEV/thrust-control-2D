@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 71ae2e5b875cf27409cfc9ebeff1e376
+guid: 1bd64188dc603c345b02beecb6f863cc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2035281301837876607
-    second: lander_0
+      213: 4952023661171776448
+    second: coin-25_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 800
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: lander_0
+      name: coin-25_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 4
-        width: 79
-        height: 119
+        x: 0
+        y: 0
+        width: 490
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 18275f9707a31c3e0800000000000000
-      internalID: -2035281301837876607
+      spriteID: 0cb197b684f19b440800000000000000
+      internalID: 4952023661171776448
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      lander_0: -2035281301837876607
+      coin-25_0: 4952023661171776448
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
