@@ -36,7 +36,15 @@ public class Lander : MonoBehaviour
 
             Vector2 thrustDirection = transform.up; // Thrust in the direction the lander is facing
             rb.AddForce(thrustDirection * thrustPower * Time.deltaTime);
+        }
+
+        // Consume fuel when thrusting or rotating
+        if(Keyboard.current.leftArrowKey.isPressed ||
+           Keyboard.current.rightArrowKey.isPressed ||
+           Keyboard.current.upArrowKey.isPressed)
+        {
             fuelAmount -= fuelConsumptionSpeed * Time.deltaTime;
+            if (fuelAmount < 0) fuelAmount = 0;
         }
 
         Debug.Log(fuelAmount);
@@ -66,5 +74,11 @@ public class Lander : MonoBehaviour
         {
             this.fuelAmount = fuelAmountMax;
         }
+    }
+
+    public bool IsThrusting()
+    {
+        if (fuelAmount <= 0) return false;
+        return Keyboard.current.upArrowKey.isPressed;
     }
 }
