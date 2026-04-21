@@ -20,17 +20,17 @@ public class Lander : MonoBehaviour
     private void Update()
     {
         // Rotate the lander
-        if (Keyboard.current.leftArrowKey.isPressed)
+        if (GameInput.Instance.IsRotatingLeft())
         {
             rb.AddTorque(rotationSpeed * Time.deltaTime);
         }
-        else if (Keyboard.current.rightArrowKey.isPressed)
+        else if (GameInput.Instance.IsRotatingRight())
         {
             rb.AddTorque(-rotationSpeed * Time.deltaTime);
         }
 
         // Thrust the lander
-        if (Keyboard.current.upArrowKey.isPressed)
+        if (GameInput.Instance.IsMovingUp())
         {
             if (fuelAmount <= 0) return;
 
@@ -39,15 +39,13 @@ public class Lander : MonoBehaviour
         }
 
         // Consume fuel when thrusting or rotating
-        if(Keyboard.current.leftArrowKey.isPressed ||
-           Keyboard.current.rightArrowKey.isPressed ||
-           Keyboard.current.upArrowKey.isPressed)
+        if(GameInput.Instance.IsRotatingLeft() ||
+           GameInput.Instance.IsRotatingRight() ||
+           GameInput.Instance.IsMovingUp())
         {
             fuelAmount -= fuelConsumptionSpeed * Time.deltaTime;
             if (fuelAmount < 0) fuelAmount = 0;
         }
-
-        Debug.Log(fuelAmount);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -79,6 +77,6 @@ public class Lander : MonoBehaviour
     public bool IsThrusting()
     {
         if (fuelAmount <= 0) return false;
-        return Keyboard.current.upArrowKey.isPressed;
+        return GameInput.Instance.IsMovingUp();
     }
 }
