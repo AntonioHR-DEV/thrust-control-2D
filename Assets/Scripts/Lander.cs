@@ -6,24 +6,48 @@ public class Lander : MonoBehaviour
 {
     public event EventHandler OnCrashed;
 
+    public static Lander Instance { get; private set; }
+
     [SerializeField] private float thrustPower = 500f;
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float fuelAmountMax = 10f;
     [SerializeField] float fuelConsumptionSpeed = .5f;
     [SerializeField] private float landingSpeedThreshold = 4f;
     [SerializeField] private float landingAngleThreshold = 15f;
+    [SerializeField] private float gravityScale = .7f;
     private float fuelAmount;
 
     private Rigidbody2D rb;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         fuelAmount = fuelAmountMax; // Start with full fuel
+        rb.gravityScale = 0f; // Disable gravity at the start
     }
 
     private void Update()
     {
+        if(GameInput.Instance.IsRotatingLeft() ||
+           GameInput.Instance.IsRotatingRight() ||
+           GameInput.Instance.IsMovingUp())
+        {
+            if (rb.gravityScale == 0f)
+            {
+                // Enable gravity when the player starts moving
+                rb.gravityScale = gravityScale;
+            }
+
+            // Consume fuel when thrusting or rotating
+            fuelAmount -= fuelConsumptionSpeed * Time.deltaTime;
+            if (fuelAmount < 0) fuelAmount = 0;
+        }
+
         // Rotate the lander
         if (GameInput.Instance.IsRotatingLeft())
         {
@@ -41,15 +65,6 @@ public class Lander : MonoBehaviour
 
             Vector2 thrustDirection = transform.up; // Thrust in the direction the lander is facing
             rb.AddForce(thrustDirection * thrustPower * Time.deltaTime);
-        }
-
-        // Consume fuel when thrusting or rotating
-        if(GameInput.Instance.IsRotatingLeft() ||
-           GameInput.Instance.IsRotatingRight() ||
-           GameInput.Instance.IsMovingUp())
-        {
-            fuelAmount -= fuelConsumptionSpeed * Time.deltaTime;
-            if (fuelAmount < 0) fuelAmount = 0;
         }
     }
 
