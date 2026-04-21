@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 2179362980926941600}
   - component: {fileID: 728661574816992841}
   - component: {fileID: 1413154317221328871}
+  - component: {fileID: 1947471050767073404}
   m_Layer: 0
   m_Name: Lander
   m_TagString: Untagged
@@ -212,10 +213,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a59bcbb19fdeb04481e1d234dca8645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lander
-  thrustPower: 500
+  thrustPower: 600
   rotationSpeed: 10
   fuelAmountMax: 10
   fuelConsumptionSpeed: 0.5
+  landingSpeedThreshold: 4
+  landingAngleThreshold: 15
+--- !u!114 &1947471050767073404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8823218651235999436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33af6e0cceca41541aed939a2cc860d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LanderVisual
+  thrustParticleSystem: {fileID: 993572057918173514}
+  explosionParticleSystem: {fileID: 7210908723905982461, guid: 2504b9e4d554ab244830cc0bf7ae61fb, type: 3}
 --- !u!1001 &6874811062893560347
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -224,6 +241,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1617010695215286772}
     m_Modifications:
+    - target: {fileID: 5954282869609542481, guid: 2c90c411b18e22d4fba9255d3b0e27eb, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6708793486275175823, guid: 2c90c411b18e22d4fba9255d3b0e27eb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -276,5 +297,10 @@ PrefabInstance:
 --- !u!4 &176291422135166868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6708793486275175823, guid: 2c90c411b18e22d4fba9255d3b0e27eb, type: 3}
+  m_PrefabInstance: {fileID: 6874811062893560347}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &993572057918173514 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5954282869609542481, guid: 2c90c411b18e22d4fba9255d3b0e27eb, type: 3}
   m_PrefabInstance: {fileID: 6874811062893560347}
   m_PrefabAsset: {fileID: 0}

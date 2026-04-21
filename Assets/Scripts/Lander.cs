@@ -1,12 +1,17 @@
+using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 
 public class Lander : MonoBehaviour
 {
+    public event EventHandler OnCrashed;
+
     [SerializeField] private float thrustPower = 500f;
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float fuelAmountMax = 10f;
     [SerializeField] float fuelConsumptionSpeed = .5f;
+    [SerializeField] private float landingSpeedThreshold = 4f;
+    [SerializeField] private float landingAngleThreshold = 15f;
     private float fuelAmount;
 
     private Rigidbody2D rb;
@@ -62,6 +67,37 @@ public class Lander : MonoBehaviour
             // Collect the fuel and destroy it
             AddFuel(fuel.FuelAmount);
             fuel.DestroySelf();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider.TryGetComponent(out LandingPad landingPad))
+        {
+            // Check landing conditions
+            float landingSpeed = collision.relativeVelocity.magnitude;
+            float landingAngle = Vector2.Angle(transform.up, Vector2.up);
+
+            Debug.Log("Landing Speed: " + landingSpeed + ", Landing Angle: " + landingAngle);
+
+            if (landingSpeed <= landingSpeedThreshold && landingAngle <= landingAngleThreshold)
+            {
+                // Successful landing
+                GameManager.Instance.MultiplyScore(landingPad.ScoreMultiplier);
+                Debug.Log("Successful Landing! Score Gained: " + GameManager.Instance.Score);
+            }
+            else
+            {
+                // Crash
+                Debug.Log("Crashed!");
+                OnCrashed?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        else
+        {
+            // crashed on Terrain
+            Debug.Log("Crashed on Terrain!");
+            OnCrashed?.Invoke(this, EventArgs.Empty);
         }
     }
 

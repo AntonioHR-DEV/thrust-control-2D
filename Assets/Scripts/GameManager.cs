@@ -6,13 +6,20 @@ public class GameManager : MonoBehaviour
 
     private int score = 0;
 
+    public int Score => score;
+
     private void Awake()
     {
         Instance = this;
     }
-    public void AddScore(float point)
+    public void AddScore(int point)
     {
-        score += (int)point;
+        score += point;
         Debug.Log("Score: " + score);
+    }
+
+    public void MultiplyScore(int multiplier)
+    {
+        score *= multiplier;
     }
 }

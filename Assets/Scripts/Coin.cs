@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] private float coinValue = 100f;
+    [SerializeField] private int coinValue = 100;
 
-    public float CoinValue
+    public int CoinValue
     {
         get => coinValue;
     }
