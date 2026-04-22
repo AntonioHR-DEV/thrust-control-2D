@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Lander : MonoBehaviour
 {
+    public event EventHandler OnLanded;
     public event EventHandler OnCrashed;
 
     public static Lander Instance { get; private set; }
@@ -16,8 +17,10 @@ public class Lander : MonoBehaviour
     [SerializeField] private float landingAngleThreshold = 15f;
     [SerializeField] private float gravityScale = .7f;
     private float fuelAmount;
-
     private Rigidbody2D rb;
+
+    public float FuelAmount => fuelAmount;
+    public float FuelAmountMax => fuelAmountMax;
 
     private void Awake()
     {
@@ -33,13 +36,14 @@ public class Lander : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.Instance.IsPlaying()) return;
+
         if(GameInput.Instance.IsRotatingLeft() ||
            GameInput.Instance.IsRotatingRight() ||
            GameInput.Instance.IsMovingUp())
         {
             if (rb.gravityScale == 0f)
             {
-                // Enable gravity when the player starts moving
                 rb.gravityScale = gravityScale;
             }
 
@@ -99,19 +103,17 @@ public class Lander : MonoBehaviour
             {
                 // Successful landing
                 GameManager.Instance.MultiplyScore(landingPad.ScoreMultiplier);
-                Debug.Log("Successful Landing! Score Gained: " + GameManager.Instance.Score);
+                OnLanded?.Invoke(this, EventArgs.Empty);
             }
             else
             {
                 // Crash
-                Debug.Log("Crashed!");
                 OnCrashed?.Invoke(this, EventArgs.Empty);
             }
         }
         else
         {
             // crashed on Terrain
-            Debug.Log("Crashed on Terrain!");
             OnCrashed?.Invoke(this, EventArgs.Empty);
         }
     }
