@@ -102,7 +102,16 @@ public class Lander : MonoBehaviour
             if (landingSpeed <= landingSpeedThreshold && landingAngle <= landingAngleThreshold)
             {
                 // Successful landing
-                GameManager.Instance.MultiplyScore(landingPad.ScoreMultiplier);
+                int speedScoreMax = 100;
+                int angleScoreMax = 100;
+
+                int landingSpeedScore = Mathf.RoundToInt(Mathf.Lerp(speedScoreMax, 0f, landingSpeed / landingSpeedThreshold));
+                int landingAngleScore = Mathf.RoundToInt(Mathf.Lerp(angleScoreMax, 0f, landingAngle / landingAngleThreshold));
+
+                int totalLandingScore = (landingSpeedScore + landingAngleScore) * landingPad.ScoreMultiplier;
+
+                GameManager.Instance.AddScore(totalLandingScore);
+
                 OnLanded?.Invoke(this, EventArgs.Empty);
             }
             else

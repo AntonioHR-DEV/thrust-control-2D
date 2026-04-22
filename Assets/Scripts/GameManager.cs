@@ -91,11 +91,6 @@ public class GameManager : MonoBehaviour
         OnScoreChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public void MultiplyScore(int multiplier)
-    {
-        score *= multiplier;
-    }
-
     private void LoadLevel(int levelIndex)
     {
         GameObject gameLevelGameObject = Instantiate(GetGameLevelPrefab(levelIndex), Vector3.zero, Quaternion.identity);
