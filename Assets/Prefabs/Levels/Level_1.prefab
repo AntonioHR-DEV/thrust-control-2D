@@ -1,5 +1,42 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1801496411986587942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4185711816736115124}
+  m_Layer: 0
+  m_Name: Coins
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4185711816736115124
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801496411986587942}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5989948898403324842}
+  - {fileID: 6418802913171789047}
+  - {fileID: 198522441287958170}
+  - {fileID: 2820382414937025554}
+  - {fileID: 1908837519297369175}
+  - {fileID: 3415241656805131395}
+  m_Father: {fileID: 6141557616564580550}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3721161419768190930
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,12 +518,7 @@ Transform:
   m_Children:
   - {fileID: 2407863771219298289}
   - {fileID: 8829249660663366695}
-  - {fileID: 5989948898403324842}
-  - {fileID: 6418802913171789047}
-  - {fileID: 198522441287958170}
-  - {fileID: 2820382414937025554}
-  - {fileID: 1908837519297369175}
-  - {fileID: 3415241656805131395}
+  - {fileID: 4185711816736115124}
   - {fileID: 1511921175726920428}
   - {fileID: 5862538928084990803}
   m_Father: {fileID: 0}
@@ -505,6 +537,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameLevel
   levelIndex: 1
   landerSpawnPoint: {fileID: 5862538928084990803}
+  timeLimit: 40
 --- !u!1001 &3007578598581712543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -651,7 +684,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 6141557616564580550}
+    m_TransformParent: {fileID: 4185711816736115124}
     m_Modifications:
     - target: {fileID: 3416166830763800976, guid: 23ef46be40f53c743b978e61204b7155, type: 3}
       propertyPath: m_LocalPosition.x
@@ -876,7 +909,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 6141557616564580550}
+    m_TransformParent: {fileID: 4185711816736115124}
     m_Modifications:
     - target: {fileID: 3416166830763800976, guid: 23ef46be40f53c743b978e61204b7155, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1018,7 +1051,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 6141557616564580550}
+    m_TransformParent: {fileID: 4185711816736115124}
     m_Modifications:
     - target: {fileID: 3416166830763800976, guid: 23ef46be40f53c743b978e61204b7155, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1160,7 +1193,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 6141557616564580550}
+    m_TransformParent: {fileID: 4185711816736115124}
     m_Modifications:
     - target: {fileID: 3416166830763800976, guid: 23ef46be40f53c743b978e61204b7155, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1302,7 +1335,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 6141557616564580550}
+    m_TransformParent: {fileID: 4185711816736115124}
     m_Modifications:
     - target: {fileID: 3416166830763800976, guid: 23ef46be40f53c743b978e61204b7155, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1444,7 +1477,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 6141557616564580550}
+    m_TransformParent: {fileID: 4185711816736115124}
     m_Modifications:
     - target: {fileID: 3416166830763800976, guid: 23ef46be40f53c743b978e61204b7155, type: 3}
       propertyPath: m_LocalPosition.x

@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class Lander : MonoBehaviour
 {
-    public event EventHandler OnLanded;
+    public event EventHandler<OnLandedEventArgs> OnLanded;
+    public class OnLandedEventArgs : EventArgs
+    {
+        public float landingSpeed;
+        public float landingAngle;
+        public int landingScore;
+    }
     public event EventHandler OnCrashed;
+
+    public enum LanderState
+    {
+        WaitingToStart,
+        Flying,
+        Landed,
+        Crashed
+    }
 
     public static Lander Instance { get; private set; }
 
@@ -18,13 +32,16 @@ public class Lander : MonoBehaviour
     [SerializeField] private float gravityScale = .7f;
     private float fuelAmount;
     private Rigidbody2D rb;
+    private LanderState state;
 
     public float FuelAmount => fuelAmount;
     public float FuelAmountMax => fuelAmountMax;
+    public LanderState State => state;
 
     private void Awake()
     {
         Instance = this;
+        state = LanderState.WaitingToStart;
     }
 
     private void Start()
@@ -36,39 +53,24 @@ public class Lander : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.Instance.IsPlaying()) return;
-
-        if(GameInput.Instance.IsRotatingLeft() ||
-           GameInput.Instance.IsRotatingRight() ||
-           GameInput.Instance.IsMovingUp())
+        switch (state)
         {
-            if (rb.gravityScale == 0f)
-            {
-                rb.gravityScale = gravityScale;
-            }
-
-            // Consume fuel when thrusting or rotating
-            fuelAmount -= fuelConsumptionSpeed * Time.deltaTime;
-            if (fuelAmount < 0) fuelAmount = 0;
-        }
-
-        // Rotate the lander
-        if (GameInput.Instance.IsRotatingLeft())
-        {
-            rb.AddTorque(rotationSpeed * Time.deltaTime);
-        }
-        else if (GameInput.Instance.IsRotatingRight())
-        {
-            rb.AddTorque(-rotationSpeed * Time.deltaTime);
-        }
-
-        // Thrust the lander
-        if (GameInput.Instance.IsMovingUp())
-        {
-            if (fuelAmount <= 0) return;
-
-            Vector2 thrustDirection = transform.up; // Thrust in the direction the lander is facing
-            rb.AddForce(thrustDirection * thrustPower * Time.deltaTime);
+            case LanderState.WaitingToStart:
+                if (GameInput.Instance.IsRotatingLeft() ||
+                    GameInput.Instance.IsRotatingRight() ||
+                    GameInput.Instance.IsMovingUp())
+                {
+                    state = LanderState.Flying;
+                    rb.gravityScale = gravityScale;
+                }
+                break;
+            case LanderState.Flying:
+                HandleInput();
+                break;
+            case LanderState.Landed:
+                break;
+            case LanderState.Crashed:
+                break;
         }
     }
 
@@ -102,28 +104,75 @@ public class Lander : MonoBehaviour
             if (landingSpeed <= landingSpeedThreshold && landingAngle <= landingAngleThreshold)
             {
                 // Successful landing
-                int speedScoreMax = 100;
-                int angleScoreMax = 100;
+                int landingSpeedScoreMax = 100;
+                int landingAngleScoreMax = 100;
 
-                int landingSpeedScore = Mathf.RoundToInt(Mathf.Lerp(speedScoreMax, 0f, landingSpeed / landingSpeedThreshold));
-                int landingAngleScore = Mathf.RoundToInt(Mathf.Lerp(angleScoreMax, 0f, landingAngle / landingAngleThreshold));
+                int landingSpeedScore = Mathf.RoundToInt(Mathf.Lerp(landingSpeedScoreMax, 0f, landingSpeed / landingSpeedThreshold));
+                int landingAngleScore = Mathf.RoundToInt(Mathf.Lerp(landingAngleScoreMax, 0f, landingAngle / landingAngleThreshold));
 
                 int totalLandingScore = (landingSpeedScore + landingAngleScore) * landingPad.ScoreMultiplier;
 
-                GameManager.Instance.AddScore(totalLandingScore);
-
-                OnLanded?.Invoke(this, EventArgs.Empty);
+                state = LanderState.Landed;
+                OnLanded?.Invoke(this, new OnLandedEventArgs
+                {
+                    landingSpeed = landingSpeed,
+                    landingAngle = landingAngle,
+                    landingScore = totalLandingScore
+                });
             }
             else
             {
-                // Crash
+                // Crashed because of bad landing conditions
+                state = LanderState.Crashed;
                 OnCrashed?.Invoke(this, EventArgs.Empty);
             }
         }
         else
         {
             // crashed on Terrain
+            state = LanderState.Crashed;
             OnCrashed?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    public bool IsThrusting()
+    {
+        if (fuelAmount <= 0) return false;
+        return GameInput.Instance.IsMovingUp();
+    }
+
+    public bool HasLanded()
+    {
+        return state == LanderState.Landed;
+    }
+
+    private void HandleInput(){
+        if(GameInput.Instance.IsRotatingLeft() ||
+           GameInput.Instance.IsRotatingRight() ||
+           GameInput.Instance.IsMovingUp())
+        {
+            // Consume fuel when thrusting or rotating
+            fuelAmount -= fuelConsumptionSpeed * Time.deltaTime;
+            if (fuelAmount < 0) fuelAmount = 0;
+        }
+
+        // Rotate the lander
+        if (GameInput.Instance.IsRotatingLeft())
+        {
+            rb.AddTorque(rotationSpeed * Time.deltaTime);
+        }
+        else if (GameInput.Instance.IsRotatingRight())
+        {
+            rb.AddTorque(-rotationSpeed * Time.deltaTime);
+        }
+
+        // Thrust the lander
+        if (GameInput.Instance.IsMovingUp())
+        {
+            if (fuelAmount <= 0) return;
+
+            Vector2 thrustDirection = transform.up; // Thrust in the direction the lander is facing
+            rb.AddForce(thrustDirection * thrustPower * Time.deltaTime);
         }
     }
 
@@ -134,11 +183,5 @@ public class Lander : MonoBehaviour
         {
             this.fuelAmount = fuelAmountMax;
         }
-    }
-
-    public bool IsThrusting()
-    {
-        if (fuelAmount <= 0) return false;
-        return GameInput.Instance.IsMovingUp();
     }
 }

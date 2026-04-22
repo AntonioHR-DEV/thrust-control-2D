@@ -10,4 +10,16 @@ public class GameLevel : MonoBehaviour
     public int LevelIndex => levelIndex;
     public Transform LanderSpawnPoint => landerSpawnPoint;
     public float TimeLimit => timeLimit;
+
+    public int TotalCoinValue()
+    {
+        int totalValue = 0;
+        Coin[] coins = gameObject.GetComponentsInChildren<Coin>(false);
+        foreach (Coin coin in coins)
+        {
+            totalValue += coin.CoinValue;
+        }
+
+        return totalValue;
+    }
 }

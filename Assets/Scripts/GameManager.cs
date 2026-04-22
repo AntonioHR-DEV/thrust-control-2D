@@ -1,10 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public event EventHandler OnScoreChanged;
+    public event EventHandler OnGameStateChanged;
 
     public static GameManager Instance { get; private set; }
 
@@ -48,18 +50,6 @@ public class GameManager : MonoBehaviour
         Lander.Instance.OnCrashed += Lander_OnCrashed;
     }
 
-    private void Lander_OnLanded(object sender, EventArgs e)
-    {
-        state = GameState.GameOver;
-        Debug.Log("Game Over! Lander landed successfully.");
-    }
-
-    private void Lander_OnCrashed(object sender, EventArgs e)
-    {
-        state = GameState.GameOver;
-        Debug.Log("Game Over! Lander crashed.");
-    }
-
     private void Update()
     {
         switch (state)
@@ -70,6 +60,7 @@ public class GameManager : MonoBehaviour
                     GameInput.Instance.IsMovingUp())
                 {
                     state = GameState.Playing;
+                    OnGameStateChanged?.Invoke(this, EventArgs.Empty);
                 }
                 break;
             case GameState.Playing:
@@ -78,6 +69,7 @@ public class GameManager : MonoBehaviour
                 {
                     levelTimer = 0f;
                     state = GameState.GameOver;
+                    OnGameStateChanged?.Invoke(this, EventArgs.Empty);
                 }
                 break;
             case GameState.GameOver:
@@ -89,6 +81,69 @@ public class GameManager : MonoBehaviour
     {
         score += point;
         OnScoreChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public bool IsWaitingToStart()
+    {
+        return state == GameState.WaitingToStart;
+    }
+
+    public bool IsPlaying()
+    {
+        return state == GameState.Playing;
+    }
+
+    public bool IsGameOver()
+    {
+        return state == GameState.GameOver;
+    }
+
+    public int CalculateGamePlayRating(int levelIndex, int score, int timeBonus, int landingScore)
+    {
+        int starCount = 0;
+        GameLevel gameLevel = GetGameLevelPrefab(levelIndex).GetComponent<GameLevel>();
+        
+        // Check if has collected all coins
+        if(score - timeBonus - landingScore >= gameLevel.TotalCoinValue())
+        {
+            starCount++;
+        }
+        // Check if has a perfect landing
+        int perfectLandingScore = 140;
+        if(landingScore >= perfectLandingScore)
+        {
+            starCount++;
+        }
+        // Check if has not used more than 80% of the time
+        if(timeBonus >= gameLevel.TimeLimit * 0.2f)
+        {
+            starCount++;
+        }
+
+        return starCount;
+    }
+
+    private void Lander_OnLanded(object sender, Lander.OnLandedEventArgs e)
+    {
+        state = GameState.GameOver;
+
+        AddScore(e.landingScore);
+
+        // If there is still a time left, add the time to the score
+        if (levelTimer > 0)
+        {
+            int timeBonus = Mathf.FloorToInt(levelTimer);
+            AddScore(timeBonus);
+        }
+
+        OnScoreChanged?.Invoke(this, EventArgs.Empty);
+        OnGameStateChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void Lander_OnCrashed(object sender, EventArgs e)
+    {
+        state = GameState.GameOver;
+        OnGameStateChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void LoadLevel(int levelIndex)
@@ -113,20 +168,5 @@ public class GameManager : MonoBehaviour
 
         Debug.LogError("Invalid level index: " + levelIndex);
         return null;
-    }
-
-    public bool IsWaitingToStart()
-    {
-        return state == GameState.WaitingToStart;
-    }
-
-    public bool IsPlaying()
-    {
-        return state == GameState.Playing;
-    }
-
-    public bool IsGameOver()
-    {
-        return state == GameState.GameOver;
     }
 }

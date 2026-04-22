@@ -20,18 +20,23 @@ public class GamePlayUI : MonoBehaviour
         UpdateFuelBar();
     }
 
-    private void GameManager_OnScoreChanged(object sender, EventArgs e)
-    {
-        UpdateScoreText();
-    }
-
     private void Update()
     {
-        if (GameManager.Instance.State == GameManager.GameState.Playing)
+        if (GameManager.Instance.IsPlaying())
         {
             UpdateTimerText();
             UpdateFuelBar();
         }
+        if (GameManager.Instance.IsGameOver() && GameManager.Instance.LevelTimer > 0)
+        {
+            UpdateTimerText();
+        }
+    }
+
+    
+    private void GameManager_OnScoreChanged(object sender, EventArgs e)
+    {
+        UpdateScoreText();
     }
 
     private void UpdateLevelText()
