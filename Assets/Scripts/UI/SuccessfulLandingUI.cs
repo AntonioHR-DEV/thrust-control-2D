@@ -22,19 +22,6 @@ public class SuccessfulLandingUI : MonoBehaviour
     {
         Hide();
         Lander.Instance.OnLanded += Lander_OnLanded;
-        GameManager.Instance.OnGameStateChanged += GameManager_OnGameStateChanged;
-    }
-
-    private void GameManager_OnGameStateChanged(object sender, EventArgs e)
-    {
-        if (GameManager.Instance.IsGameOver() && Lander.Instance.HasLanded())
-        {
-            Show();
-            UpdateLandingStatsText();
-            UpdateTotalScoreText();
-            UpdateTimeBonusText();
-            UpdateStarRating();
-        }
     }
 
     private void Lander_OnLanded(object sender, Lander.OnLandedEventArgs e)
@@ -42,6 +29,14 @@ public class SuccessfulLandingUI : MonoBehaviour
         landingSpeed = e.landingSpeed;
         landingAngle = e.landingAngle;
         landingScore = e.landingScore;
+
+        Show();
+        UpdateLandingStatsText();
+        UpdateTotalScoreText();
+        UpdateTimeBonusText();
+        UpdateStarRating();
+
+        Debug.Log("Landing Speed: " + landingSpeed + ", Landing Angle: " + landingAngle + ", Landing Score: " + landingScore);
     }
 
     private void Show()

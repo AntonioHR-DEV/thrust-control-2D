@@ -13,6 +13,11 @@ public class GameInput : MonoBehaviour
         inputActions.Player.Enable();
     }
 
+    private void OnDestroy()
+    {
+        inputActions.Player.Disable();
+    }
+
     public bool IsMovingUp()
     {
         return inputActions.Player.MoveUp.IsPressed();

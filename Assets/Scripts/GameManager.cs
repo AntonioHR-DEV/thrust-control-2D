@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -123,24 +124,20 @@ public class GameManager : MonoBehaviour
         return starCount;
     }
 
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
     private void Lander_OnLanded(object sender, Lander.OnLandedEventArgs e)
     {
         state = GameState.GameOver;
-
-        AddScore(e.landingScore);
-
-        // If there is still a time left, add the time to the score
-        if (levelTimer > 0)
-        {
-            int timeBonus = Mathf.FloorToInt(levelTimer);
-            AddScore(timeBonus);
-        }
 
         OnScoreChanged?.Invoke(this, EventArgs.Empty);
         OnGameStateChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    private void Lander_OnCrashed(object sender, EventArgs e)
+    private void Lander_OnCrashed(object sender, Lander.OnCrashedEventArgs e)
     {
         state = GameState.GameOver;
         OnGameStateChanged?.Invoke(this, EventArgs.Empty);

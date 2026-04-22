@@ -11,7 +11,7 @@ public class LanderVisual : MonoBehaviour
         Lander.Instance.OnCrashed += Lander_OnCrashed;
     }
 
-    private void Lander_OnCrashed(object sender, EventArgs e)
+    private void Lander_OnCrashed(object sender, Lander.OnCrashedEventArgs e)
     {
         gameObject.SetActive(false); // Hide the lander
         Instantiate(explosionParticleSystem, transform.position, Quaternion.identity); // Play explosion effect

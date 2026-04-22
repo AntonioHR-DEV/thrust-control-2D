@@ -11,7 +11,13 @@ public class Lander : MonoBehaviour
         public float landingAngle;
         public int landingScore;
     }
-    public event EventHandler OnCrashed;
+    public event EventHandler<OnCrashedEventArgs> OnCrashed;
+    public class OnCrashedEventArgs : EventArgs
+    {
+        public CrashReason crashReason;
+        public float crashSpeed;
+        public float crashAngle;
+    }
 
     public enum LanderState
     {
@@ -19,6 +25,13 @@ public class Lander : MonoBehaviour
         Flying,
         Landed,
         Crashed
+    }
+
+    public enum CrashReason
+    {
+        None,
+        BadLandingConditions,
+        TerrainCollision
     }
 
     public static Lander Instance { get; private set; }
@@ -41,13 +54,11 @@ public class Lander : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        state = LanderState.WaitingToStart;
-    }
 
-    private void Start()
-    {
         rb = GetComponent<Rigidbody2D>();
-        fuelAmount = fuelAmountMax; // Start with full fuel
+
+        state = LanderState.WaitingToStart;
+        fuelAmount = fuelAmountMax;
         rb.gravityScale = 0f; // Disable gravity at the start
     }
 
@@ -99,8 +110,6 @@ public class Lander : MonoBehaviour
             float landingSpeed = collision.relativeVelocity.magnitude;
             float landingAngle = Vector2.Angle(transform.up, Vector2.up);
 
-            Debug.Log("Landing Speed: " + landingSpeed + ", Landing Angle: " + landingAngle);
-
             if (landingSpeed <= landingSpeedThreshold && landingAngle <= landingAngleThreshold)
             {
                 // Successful landing
@@ -111,6 +120,15 @@ public class Lander : MonoBehaviour
                 int landingAngleScore = Mathf.RoundToInt(Mathf.Lerp(landingAngleScoreMax, 0f, landingAngle / landingAngleThreshold));
 
                 int totalLandingScore = (landingSpeedScore + landingAngleScore) * landingPad.ScoreMultiplier;
+
+                // Add landing score to total score
+                GameManager.Instance.AddScore(totalLandingScore);
+                // If there is still a time left, add the time to the score
+                if(GameManager.Instance.LevelTimer > 0)
+                {
+                    int timeBonus = Mathf.FloorToInt(GameManager.Instance.LevelTimer);
+                    GameManager.Instance.AddScore(timeBonus);
+                }
 
                 state = LanderState.Landed;
                 OnLanded?.Invoke(this, new OnLandedEventArgs
@@ -124,14 +142,24 @@ public class Lander : MonoBehaviour
             {
                 // Crashed because of bad landing conditions
                 state = LanderState.Crashed;
-                OnCrashed?.Invoke(this, EventArgs.Empty);
+                OnCrashed?.Invoke(this, new OnCrashedEventArgs
+                {
+                    crashReason = CrashReason.BadLandingConditions,
+                    crashSpeed = landingSpeed,
+                    crashAngle = landingAngle
+                });
             }
         }
         else
         {
             // crashed on Terrain
             state = LanderState.Crashed;
-            OnCrashed?.Invoke(this, EventArgs.Empty);
+            OnCrashed?.Invoke(this, new OnCrashedEventArgs
+            {
+                crashReason = CrashReason.TerrainCollision,
+                crashSpeed = collision.relativeVelocity.magnitude,
+                crashAngle = Vector2.Angle(transform.up, Vector2.up)
+            });
         }
     }
 
