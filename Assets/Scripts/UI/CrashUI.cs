@@ -15,6 +15,11 @@ public class CrashUI : MonoBehaviour
         {
             GameManager.Instance.RestartLevel();
         });
+
+        mainMenuButton.onClick.AddListener(() =>
+        {
+            SceneLoader.LoadScene(SceneLoader.Scene.MainMenuScene);
+        });
     }
 
     private void Start()

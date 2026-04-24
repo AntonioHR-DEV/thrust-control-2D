@@ -18,6 +18,19 @@ public class SuccessfulLandingUI : MonoBehaviour
     int landingScore;
     int starCount;
 
+    private void Awake()
+    {
+        mainMenuButton.onClick.AddListener(() =>
+        {
+            SceneLoader.LoadScene(SceneLoader.Scene.MainMenuScene);
+        });
+
+        continueButton.onClick.AddListener(() =>
+        {
+            // TODO: Implement continue to next level functionality
+        });
+    }
+
     private void Start()
     {
         Hide();
