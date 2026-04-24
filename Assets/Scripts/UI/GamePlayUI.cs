@@ -41,7 +41,7 @@ public class GamePlayUI : MonoBehaviour
 
     private void UpdateLevelText()
     {
-        levelText.text = $"LEVEL {GameManager.Instance.GameLevelIndex}";
+        levelText.text = $"LEVEL {GameManager.GameLevelIndex}";
     }
 
     private void UpdateTimerText()

@@ -16,6 +16,7 @@ public class GameInput : MonoBehaviour
     private void OnDestroy()
     {
         inputActions.Player.Disable();
+        inputActions.Dispose();
     }
 
     public bool IsMovingUp()

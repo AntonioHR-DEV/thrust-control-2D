@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +7,12 @@ public class GameManager : MonoBehaviour
     public event EventHandler OnGameStateChanged;
 
     public static GameManager Instance { get; private set; }
+    private static int gameLevelIndex;
+    public static int GameLevelIndex
+    {
+        get => gameLevelIndex;
+        set => gameLevelIndex = value;
+    }
 
     public enum GameState
     {
@@ -18,16 +21,13 @@ public class GameManager : MonoBehaviour
         GameOver
     }
 
-    [SerializeField] private int gameLevelIndex = 1;
-    [SerializeField] private List<GameObject> gameLevelPrefabList;
+    [SerializeField] private LevelsListSO levelsListSO;
     private GameState state;
     private int score = 0;
     private GameLevel currentGameLevel;
     private float levelTimer;
 
     public int Score => score;
-    public int GameLevelIndex => gameLevelIndex;
-    public GameLevel CurrentGameLevel => currentGameLevel;
     public float LevelTimer => levelTimer;
     public GameState State => state;
 
@@ -154,12 +154,11 @@ public class GameManager : MonoBehaviour
 
     private GameObject GetGameLevelPrefab(int levelIndex)
     {
-        foreach (GameObject prefab in gameLevelPrefabList)
+        foreach (GameLevel gameLevel in levelsListSO.GameLevelsList)
         {
-            GameLevel gameLevel = prefab.GetComponent<GameLevel>();
-            if (gameLevel != null && gameLevel.LevelIndex == levelIndex)
+            if (gameLevel.LevelIndex == levelIndex)
             {
-                return prefab;
+                return gameLevel.gameObject;
             }
         }
 

@@ -538,6 +538,7 @@ MonoBehaviour:
   levelIndex: 1
   landerSpawnPoint: {fileID: 5862538928084990803}
   timeLimit: 40
+  thumbnail: {fileID: 21300000, guid: c27faeb5e4541934186b7e1d0d455e27, type: 3}
 --- !u!1001 &3007578598581712543
 PrefabInstance:
   m_ObjectHideFlags: 0

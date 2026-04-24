@@ -6,10 +6,12 @@ public class GameLevel : MonoBehaviour
     [SerializeField] private int levelIndex;
     [SerializeField] private Transform landerSpawnPoint;
     [SerializeField] private float timeLimit = 60f;
+    [SerializeField] private Sprite thumbnail;
 
     public int LevelIndex => levelIndex;
     public Transform LanderSpawnPoint => landerSpawnPoint;
     public float TimeLimit => timeLimit;
+    public Sprite Thumbnail => thumbnail;
 
     public int TotalCoinValue()
     {

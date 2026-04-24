@@ -48,8 +48,6 @@ public class SuccessfulLandingUI : MonoBehaviour
         UpdateTotalScoreText();
         UpdateTimeBonusText();
         UpdateStarRating();
-
-        Debug.Log("Landing Speed: " + landingSpeed + ", Landing Angle: " + landingAngle + ", Landing Score: " + landingScore);
     }
 
     private void Show()
@@ -84,7 +82,7 @@ public class SuccessfulLandingUI : MonoBehaviour
 
     private void UpdateStarRating()
     {
-        starCount = GameManager.Instance.CalculateGamePlayRating(GameManager.Instance.GameLevelIndex, GameManager.Instance.Score, Mathf.FloorToInt(GameManager.Instance.LevelTimer), landingScore);
+        starCount = GameManager.Instance.CalculateGamePlayRating(GameManager.GameLevelIndex, GameManager.Instance.Score, Mathf.FloorToInt(GameManager.Instance.LevelTimer), landingScore);
 
         for (int i = 0; i < starList.Count; i++)
         {
