@@ -174,7 +174,10 @@ public class Lander : MonoBehaviour
         return state == LanderState.Landed;
     }
 
-    private void HandleInput(){
+    private void HandleInput()
+    {
+        if (!GameManager.Instance.IsPlaying() || fuelAmount <= 0) return;
+
         if(GameInput.Instance.IsRotatingLeft() ||
            GameInput.Instance.IsRotatingRight() ||
            GameInput.Instance.IsMovingUp())
@@ -197,8 +200,6 @@ public class Lander : MonoBehaviour
         // Thrust the lander
         if (GameInput.Instance.IsMovingUp())
         {
-            if (fuelAmount <= 0) return;
-
             Vector2 thrustDirection = transform.up; // Thrust in the direction the lander is facing
             rb.AddForce(thrustDirection * thrustPower * Time.deltaTime);
         }

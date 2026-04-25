@@ -5,9 +5,10 @@ public class GameManager : MonoBehaviour
 {
     public event EventHandler OnScoreChanged;
     public event EventHandler OnGameStateChanged;
+    public event EventHandler OnTimeUp;
 
     public static GameManager Instance { get; private set; }
-    private static int gameLevelIndex;
+    private static int gameLevelIndex = 1;
     public static int GameLevelIndex
     {
         get => gameLevelIndex;
@@ -71,6 +72,7 @@ public class GameManager : MonoBehaviour
                     levelTimer = 0f;
                     state = GameState.GameOver;
                     OnGameStateChanged?.Invoke(this, EventArgs.Empty);
+                    OnTimeUp?.Invoke(this, EventArgs.Empty);
                 }
                 break;
             case GameState.GameOver:

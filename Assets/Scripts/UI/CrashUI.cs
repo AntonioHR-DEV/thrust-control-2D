@@ -30,6 +30,8 @@ public class CrashUI : MonoBehaviour
 
     private void Lander_OnCrashed(object sender, Lander.OnCrashedEventArgs e)
     {
+        if (TimeUpUI.Instance.IsVisible()) return;
+
         Show();
 
         if (e.crashReason == Lander.CrashReason.BadLandingConditions)
