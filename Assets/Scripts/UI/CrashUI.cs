@@ -34,13 +34,20 @@ public class CrashUI : MonoBehaviour
 
         Show();
 
-        if (e.crashReason == Lander.CrashReason.BadLandingConditions)
+        switch (e.crashReason)
         {
-            crashReasonText.text = "Bad Landing\nConditions";
-        }
-        else if (e.crashReason == Lander.CrashReason.TerrainCollision)
-        {
-            crashReasonText.text = "Terrain\nCollision";
+            case Lander.CrashReason.BadLandingConditions:
+                crashReasonText.text = "Bad Landing\nConditions";
+                break;
+            case Lander.CrashReason.TerrainCollision:
+                crashReasonText.text = "Terrain\nCollision";
+                break;
+            case Lander.CrashReason.HitByLaser:
+                crashReasonText.text = "Hit By\nLaser";
+                break;
+            default:
+                crashReasonText.text = "Unknown\nCrash";
+                break;
         }
 
         int crashSpeedInt = Mathf.RoundToInt(e.crashSpeed * 10);

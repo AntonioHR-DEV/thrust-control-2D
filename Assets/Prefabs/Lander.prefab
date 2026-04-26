@@ -214,11 +214,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lander
   thrustPower: 600
-  rotationSpeed: 10
+  rotationSpeed: 20
   fuelAmountMax: 10
   fuelConsumptionSpeed: 0.5
   landingSpeedThreshold: 4
   landingAngleThreshold: 15
+  gravityScale: 0.7
 --- !u!114 &1947471050767073404
 MonoBehaviour:
   m_ObjectHideFlags: 0

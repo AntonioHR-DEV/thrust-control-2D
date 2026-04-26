@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2132957003379048191}
   - component: {fileID: 4969114141447051832}
+  - component: {fileID: 256773361769727962}
   m_Layer: 0
   m_Name: LandingPad
   m_TagString: Untagged
@@ -79,6 +80,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3.4654841, y: 0.8261993}
   m_EdgeRadius: 0
+--- !u!114 &256773361769727962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964839498879655515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66e11c02ef523b448aef755d2ae910cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LandingPad
+  scoreMultiplier: 1
 --- !u!1 &2508756183322302423
 GameObject:
   m_ObjectHideFlags: 0
