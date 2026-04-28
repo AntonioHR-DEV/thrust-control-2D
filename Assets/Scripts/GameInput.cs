@@ -1,7 +1,11 @@
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
+    public event EventHandler OnPauseToggled;
+
     public static GameInput Instance { get; private set; }
 
     private InputActions inputActions;
@@ -11,6 +15,16 @@ public class GameInput : MonoBehaviour
         Instance = this;
         inputActions = new InputActions();
         inputActions.Player.Enable();
+    }
+
+    private void Start()
+    {
+        inputActions.Player.TogglePause.performed += TogglePause_Performed;
+    }
+
+    private void TogglePause_Performed(InputAction.CallbackContext context)
+    {
+        OnPauseToggled?.Invoke(this, EventArgs.Empty);
     }
 
     private void OnDestroy()

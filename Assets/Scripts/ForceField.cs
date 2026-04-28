@@ -4,7 +4,6 @@ public class ForceField : MonoBehaviour
 {
     [SerializeField] private Vector2 forceDirection = Vector2.right;
     [SerializeField] private float forceMagnitude = 300f;
-    [SerializeField] private ForceMode2D forceMode = ForceMode2D.Force;
 
     private Rigidbody2D landerRb;
 

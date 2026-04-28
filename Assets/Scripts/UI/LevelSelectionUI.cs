@@ -15,6 +15,8 @@ public class LevelSelectionUI : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1f;
+
         inputActions = new InputActions();
         levelItemUIList = new List<LevelItemUI>();
     }

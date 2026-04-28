@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
     public event EventHandler OnScoreChanged;
     public event EventHandler OnGameStateChanged;
     public event EventHandler OnTimeUp;
+    public event EventHandler OnGamePaused;
+    public event EventHandler OnGameUnpaused;
 
     public static GameManager Instance { get; private set; }
     private static int gameLevelIndex = 1;
@@ -50,6 +52,7 @@ public class GameManager : MonoBehaviour
 
         Lander.Instance.OnLanded += Lander_OnLanded;
         Lander.Instance.OnCrashed += Lander_OnCrashed;
+        GameInput.Instance.OnPauseToggled += GameInput_OnPauseToggled;
     }
 
     private void Update()
@@ -131,6 +134,22 @@ public class GameManager : MonoBehaviour
         SceneLoader.LoadScene(SceneLoader.Scene.GameScene);
     }
 
+    public void TogglePause()
+    {
+        if (state == GameState.GameOver) return;
+
+        if (Time.timeScale > 0)
+        {
+            Time.timeScale = 0f;
+            OnGamePaused?.Invoke(this, EventArgs.Empty);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            OnGameUnpaused?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
     private void Lander_OnLanded(object sender, Lander.OnLandedEventArgs e)
     {
         state = GameState.GameOver;
@@ -143,6 +162,11 @@ public class GameManager : MonoBehaviour
     {
         state = GameState.GameOver;
         OnGameStateChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void GameInput_OnPauseToggled(object sender, EventArgs e)
+    {
+        TogglePause();
     }
 
     private void LoadLevel(int levelIndex)
