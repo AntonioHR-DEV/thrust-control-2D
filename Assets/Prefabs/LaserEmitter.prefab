@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LaserEmitter
   otherEmitter: {fileID: 0}
+  startDelay: 0
   onDuration: 2
-  offDuration: 1
+  offDuration: 2
   laserBeam: {fileID: 2725309771063218044}
 --- !u!1 &1588860675121983406
 GameObject:

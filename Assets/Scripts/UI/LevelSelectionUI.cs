@@ -8,9 +8,8 @@ public class LevelSelectionUI : MonoBehaviour
     [SerializeField] private Transform levelItemContainer;
     [SerializeField] private GameObject levelItemPrefab;
     [SerializeField] private Button startButton;
-    [SerializeField] private Button backButton;
+    [SerializeField] private int containerColumnCount = 3;
     private GameLevel selectedLevel;
-    private int containerColumnCount = 4;
     private InputActions inputActions;
     private List<LevelItemUI> levelItemUIList;
 
@@ -39,11 +38,6 @@ public class LevelSelectionUI : MonoBehaviour
                 GameManager.GameLevelIndex = selectedLevel.LevelIndex;
                 SceneLoader.LoadScene(SceneLoader.Scene.GameScene);
             }
-        });
-
-        backButton.onClick.AddListener(() =>
-        {
-            SceneLoader.LoadScene(SceneLoader.Scene.MainMenuScene);
         });
     }
 
