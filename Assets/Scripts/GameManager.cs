@@ -134,6 +134,14 @@ public class GameManager : MonoBehaviour
         SceneLoader.LoadScene(SceneLoader.Scene.GameScene);
     }
 
+    public void LoadNextLevel()
+    {
+        GameLevelIndex++;
+        if (!CheckLevelExistance(GameLevelIndex)) return;
+        
+        SceneLoader.LoadScene(SceneLoader.Scene.GameScene);
+    }
+
     public void TogglePause()
     {
         if (state == GameState.GameOver) return;
@@ -148,6 +156,19 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1f;
             OnGameUnpaused?.Invoke(this, EventArgs.Empty);
         }
+    }
+
+    public bool CheckLevelExistance(int levelIndex)
+    {
+        foreach (GameLevel gameLevel in levelsListSO.GameLevelsList)
+        {
+            if (gameLevel.LevelIndex == levelIndex)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void Lander_OnLanded(object sender, Lander.OnLandedEventArgs e)

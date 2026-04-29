@@ -15,8 +15,8 @@ public class SuccessfulLandingUI : MonoBehaviour
     [SerializeField] private Button continueButton;
     private float landingSpeed;
     private float landingAngle;
-    int landingScore;
-    int starCount;
+    private int landingScore;
+    private int starCount;
 
     private void Awake()
     {
@@ -27,12 +27,15 @@ public class SuccessfulLandingUI : MonoBehaviour
 
         continueButton.onClick.AddListener(() =>
         {
-            // TODO: Implement continue to next level functionality
+            GameManager.Instance.LoadNextLevel();
         });
     }
 
     private void Start()
     {
+        // Hide the continue button if there is no following/next level
+        continueButton.gameObject.SetActive(GameManager.Instance.CheckLevelExistance(GameManager.GameLevelIndex + 1));
+
         Hide();
         Lander.Instance.OnLanded += Lander_OnLanded;
     }
@@ -53,7 +56,16 @@ public class SuccessfulLandingUI : MonoBehaviour
     private void Show()
     {
         gameObject.SetActive(true);
-        continueButton.Select();
+
+        if (continueButton.gameObject.activeInHierarchy)
+        {
+            continueButton.Select();
+        }
+        else
+        {
+            mainMenuButton.Select();
+        }
+        
     }
 
     private void Hide()
