@@ -23,7 +23,11 @@ public class MainMenuUI : MonoBehaviour
 
         optionsButton.onClick.AddListener(() =>
         {
-            // TODO: Implement options menu functionality
+            HideButtons();
+            OptionsUI.Instance.Show(() =>
+            {
+                ShowButtons();
+            });
         });
 
         quitButton.onClick.AddListener(() =>
@@ -34,5 +38,21 @@ public class MainMenuUI : MonoBehaviour
             Application.Quit();
 #endif
         });
+    }
+
+    private void HideButtons()
+    {
+        playButton.gameObject.SetActive(false);
+        optionsButton.gameObject.SetActive(false);
+        quitButton.gameObject.SetActive(false);
+    }
+
+    private void ShowButtons()
+    {
+        playButton.gameObject.SetActive(true);
+        optionsButton.gameObject.SetActive(true);
+        quitButton.gameObject.SetActive(true);
+
+        playButton.Select();
     }
 }
