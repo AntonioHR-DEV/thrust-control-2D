@@ -20,6 +20,12 @@ public class Lander : MonoBehaviour
         public float crashAngle;
     }
 
+    public event EventHandler OnCoinPicked;
+    public event EventHandler OnFuelPicked;
+    public event EventHandler OnForceFieldEntered;
+    public event EventHandler OnFuelLow;
+    public event EventHandler OnThrust;
+
     public enum LanderState
     {
         WaitingToStart,
@@ -43,6 +49,7 @@ public class Lander : MonoBehaviour
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float fuelAmountMax = 10f;
     [SerializeField] float fuelConsumptionSpeed = .5f;
+    [SerializeField] float lowFuelThreshold = 2f;
     [SerializeField] private float landingSpeedThreshold = 4f;
     [SerializeField] private float landingAngleThreshold = 15f;
     [SerializeField] private float gravityScale = .7f;
@@ -83,6 +90,10 @@ public class Lander : MonoBehaviour
                 break;
             case LanderState.Flying:
                 HandleInput();
+                if (fuelAmount < lowFuelThreshold && fuelAmount > 0f)
+                {
+                    OnFuelLow?.Invoke(this, EventArgs.Empty);
+                }
                 break;
             case LanderState.Landing:
                 break;
@@ -100,6 +111,8 @@ public class Lander : MonoBehaviour
             // Collect the coin and destroy it
             GameManager.Instance.AddScore(coin.CoinValue);
             coin.DestroySelf();
+
+            OnCoinPicked?.Invoke(this, EventArgs.Empty);
         }
 
         if (other.TryGetComponent(out Fuel fuel))
@@ -107,12 +120,19 @@ public class Lander : MonoBehaviour
             // Collect the fuel and destroy it
             AddFuel(fuel.FuelAmount);
             fuel.DestroySelf();
+
+            OnFuelPicked?.Invoke(this, EventArgs.Empty);
         }
 
-        if (other.TryGetComponent(out LaserBeam laserBeam))
+        if (other.TryGetComponent(out LaserBeam _))
         {
             // Trigger crash on the lander
             HandleCrash(CrashReason.HitByLaser);
+        }
+
+        if (other.TryGetComponent(out ForceField _))
+        {
+            OnForceFieldEntered?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -177,7 +197,7 @@ public class Lander : MonoBehaviour
     public bool IsThrusting()
     {
         if (fuelAmount <= 0) return false;
-        return GameInput.Instance.IsMovingUp();
+        return GameManager.Instance.IsPlaying() && GameInput.Instance.IsMovingUp() && state == LanderState.Flying;
     }
 
     public bool HasLanded()
@@ -224,6 +244,7 @@ public class Lander : MonoBehaviour
         {
             Vector2 thrustDirection = transform.up; // Thrust in the direction the lander is facing
             rb.AddForce(thrustDirection * thrustPower * Time.deltaTime);
+            OnThrust?.Invoke(this, EventArgs.Empty);
         }
     }
 

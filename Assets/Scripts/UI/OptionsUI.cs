@@ -8,6 +8,8 @@ public class OptionsUI : MonoBehaviour
     public static OptionsUI Instance { get; private set; }
 
     [SerializeField] private Button closeButton;
+    [SerializeField] private Slider soundEffectsSlider;
+    [SerializeField] private Slider musicSlider;
     [SerializeField] private Button thrustButton;
     [SerializeField] private Button rotateLeftButton;
     [SerializeField] private Button rotateRightButton;
@@ -33,26 +35,20 @@ public class OptionsUI : MonoBehaviour
             onCloseAction?.Invoke();
         });
 
+        soundEffectsSlider.onValueChanged.AddListener(value =>
+        {
+            SoundManager.ChangeSoundEffectsVolume(value);
+        });
+
+        musicSlider.onValueChanged.AddListener(value =>
+        {
+            // TODO
+        });
+
         thrustButton.onClick.AddListener(() => { PerformRebinding(GameInput.Binding.Thrust); });
         rotateLeftButton.onClick.AddListener(() => { PerformRebinding(GameInput.Binding.Rotate_Left); });
         rotateRightButton.onClick.AddListener(() => { PerformRebinding(GameInput.Binding.Rotate_Right); });
         pauseButton.onClick.AddListener(() => { PerformRebinding(GameInput.Binding.Pause); });
-    }
-
-    private void OnEnable()
-    {
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.OnGameUnpaused += GameManager_OnGameUnpaused;
-        }
-    }
-
-    private void OnDisable()
-    {
-        if (GameManager.Instance != null)
-        {
-            GameManager.Instance.OnGameUnpaused -= GameManager_OnGameUnpaused;
-        }
     }
 
     private void Start()
@@ -60,6 +56,19 @@ public class OptionsUI : MonoBehaviour
         UpdateVisual();
         pressKeyToRebindGameObject.SetActive(false);
         Hide();
+
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnGameUnpaused += GameManager_OnGameUnpaused;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnGameUnpaused -= GameManager_OnGameUnpaused;
+        }
     }
 
     public void Show(Action onCloseAction = null)
@@ -67,6 +76,7 @@ public class OptionsUI : MonoBehaviour
         this.onCloseAction = onCloseAction;
 
         gameObject.SetActive(true);
+        soundEffectsSlider.value = SoundManager.SoundVolume;
         closeButton.Select();
     }
 

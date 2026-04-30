@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 728661574816992841}
   - component: {fileID: 1413154317221328871}
   - component: {fileID: 1947471050767073404}
+  - component: {fileID: 5452896857661160984}
   m_Layer: 0
   m_Name: Lander
   m_TagString: Untagged
@@ -217,6 +218,7 @@ MonoBehaviour:
   rotationSpeed: 20
   fuelAmountMax: 10
   fuelConsumptionSpeed: 0.5
+  lowFuelThreshold: 2
   landingSpeedThreshold: 4
   landingAngleThreshold: 15
   gravityScale: 0.7
@@ -234,6 +236,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LanderVisual
   thrustParticleSystem: {fileID: 993572057918173514}
   explosionParticleSystem: {fileID: 7210908723905982461, guid: 2504b9e4d554ab244830cc0bf7ae61fb, type: 3}
+--- !u!114 &5452896857661160984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8823218651235999436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6540a0665f55db4b9deb294da25c039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LanderSound
+  thrustSound: {fileID: 8300000, guid: 882f9d770e952f9459077329c17b88ae, type: 3}
 --- !u!1001 &6874811062893560347
 PrefabInstance:
   m_ObjectHideFlags: 0

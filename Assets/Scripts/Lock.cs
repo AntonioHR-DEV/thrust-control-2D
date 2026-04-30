@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Lock : MonoBehaviour
 {
+    public static event EventHandler OnAnyLockSwitched;
     public event EventHandler OnUnlocked;
     public event EventHandler OnLocked;
 
@@ -37,12 +38,14 @@ public class Lock : MonoBehaviour
             isUnlocked = true;
             indicatorImage.color = Color.green;
             OnUnlocked?.Invoke(this, EventArgs.Empty);
+            OnAnyLockSwitched?.Invoke(this, EventArgs.Empty);
         }
         else if (isUnlocked && progress <= 0f)
         {
             isUnlocked = false;
             indicatorImage.color = Color.red;
             OnLocked?.Invoke(this, EventArgs.Empty);
+            OnAnyLockSwitched?.Invoke(this, EventArgs.Empty);
         }
     }
 

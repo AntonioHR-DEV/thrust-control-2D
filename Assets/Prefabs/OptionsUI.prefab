@@ -1778,6 +1778,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::OptionsUI
   closeButton: {fileID: 589420710000068139}
+  soundEffectsSlider: {fileID: 6714595343543641066}
+  musicSlider: {fileID: 2407977334795282271}
   thrustButton: {fileID: 5810660795991078923}
   rotateLeftButton: {fileID: 5577734611927612981}
   rotateRightButton: {fileID: 650856709554635388}
