@@ -37,12 +37,12 @@ public class OptionsUI : MonoBehaviour
 
         soundEffectsSlider.onValueChanged.AddListener(value =>
         {
-            SoundManager.ChangeSoundEffectsVolume(value);
+            SoundManager.SoundVolume = value;
         });
 
         musicSlider.onValueChanged.AddListener(value =>
         {
-            // TODO
+            MusicManager.MusicVolume = value;
         });
 
         thrustButton.onClick.AddListener(() => { PerformRebinding(GameInput.Binding.Thrust); });
@@ -77,6 +77,7 @@ public class OptionsUI : MonoBehaviour
 
         gameObject.SetActive(true);
         soundEffectsSlider.value = SoundManager.SoundVolume;
+        musicSlider.value = MusicManager.MusicVolume;
         closeButton.Select();
     }
 

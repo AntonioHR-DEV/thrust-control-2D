@@ -38,6 +38,19 @@ public class SoundManager : MonoBehaviour
 
             return soundVolume;
         }
+        set
+        {
+            soundVolume = Mathf.Clamp01(value);
+
+            if (Instance != null)
+            {
+                Instance.warningAudioSource.volume = soundVolume;
+                Instance.OnVolumeChanged?.Invoke(Instance, EventArgs.Empty);
+            }
+
+            PlayerPrefs.SetFloat(PLAYER_PREFS_SOUND_VOLUME_KEY, soundVolume);
+            PlayerPrefs.Save();
+        }
     }
 
     private void Awake()
@@ -62,8 +75,9 @@ public class SoundManager : MonoBehaviour
         Lander.Instance.OnLanded += Lander_OnLanded;
         Lander.Instance.OnForceFieldEntered += Lander_OnForceFieldEntered;
         Lander.Instance.OnFuelLow += Lander_OnFuelLow;
-        GameManager.Instance.OnGameStateChanged += GameManager_OnGameStateChanged;
         Lock.OnAnyLockSwitched += Lock_OnAnyLockSwitched;
+        GameManager.Instance.OnGameStateChanged += GameManager_OnGameStateChanged;
+        GameManager.Instance.OnGamePaused += GameManager_OnGamePaused;
     }
 
     private void OnDestroy()
@@ -118,6 +132,11 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    private void Lock_OnAnyLockSwitched(object sender, EventArgs e)
+    {
+        AudioSource.PlayClipAtPoint(lockSwitchSound, Camera.main.transform.position, soundVolume);
+    }
+
     private void GameManager_OnGameStateChanged(object sender, EventArgs e)
     {
         if (GameManager.Instance.State == GameManager.GameState.GameOver)
@@ -129,24 +148,11 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private void Lock_OnAnyLockSwitched(object sender, EventArgs e)
+    private void GameManager_OnGamePaused(object sender, EventArgs e)
     {
-        AudioSource.PlayClipAtPoint(lockSwitchSound, Camera.main.transform.position, soundVolume);
-    }
-
-    public static void ChangeSoundEffectsVolume(float volume)
-    {
-        float newVolume = Mathf.Clamp01(volume);
-
-        soundVolume = newVolume;
-
-        PlayerPrefs.SetFloat(PLAYER_PREFS_SOUND_VOLUME_KEY, soundVolume);
-        PlayerPrefs.Save();
-
-        if (Instance != null)
+        if (warningAudioSource.isPlaying)
         {
-            Instance.warningAudioSource.volume = soundVolume;
-            Instance.OnVolumeChanged?.Invoke(Instance, EventArgs.Empty);
+            warningAudioSource.Stop();
         }
     }
 }

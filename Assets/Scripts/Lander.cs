@@ -80,6 +80,7 @@ public class Lander : MonoBehaviour
         switch (state)
         {
             case LanderState.WaitingToStart:
+                if (Time.timeScale < 1) return; // Don't switch state if the game is paused
                 if (GameInput.Instance.IsRotatingLeft() ||
                     GameInput.Instance.IsRotatingRight() ||
                     GameInput.Instance.IsMovingUp())
@@ -89,6 +90,7 @@ public class Lander : MonoBehaviour
                 }
                 break;
             case LanderState.Flying:
+                if (Time.timeScale < 1) return; // Don't do anything when the game is paused
                 HandleInput();
                 if (fuelAmount < lowFuelThreshold && fuelAmount > 0f)
                 {
