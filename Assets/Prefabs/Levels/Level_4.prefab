@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &841080439993269873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8814116992871246590}
+  m_Layer: 0
+  m_Name: CameraStartTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8814116992871246590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841080439993269873}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 55.4, y: -5.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6141557616564580550}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3721161419768190930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,6 +1137,7 @@ Transform:
   - {fileID: 4079167126973034884}
   - {fileID: 3675657155719825919}
   - {fileID: 9155372191467462640}
+  - {fileID: 8814116992871246590}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4788325389759356375
@@ -1124,6 +1156,8 @@ MonoBehaviour:
   landerSpawnPoint: {fileID: 5862538928084990803}
   timeLimit: 130
   thumbnail: {fileID: 21300000, guid: 77f49212fb72c524b86e633d5e4f77a0, type: 3}
+  cameraStartTargetTransform: {fileID: 8814116992871246590}
+  zoomedOutOrthographicSize: 48
 --- !u!1001 &11752078068967365
 PrefabInstance:
   m_ObjectHideFlags: 0

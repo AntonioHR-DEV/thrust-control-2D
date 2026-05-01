@@ -20,6 +20,7 @@ public class Lander : MonoBehaviour
         public float crashAngle;
     }
 
+    public event EventHandler OnStateChanged;
     public event EventHandler OnCoinPicked;
     public event EventHandler OnFuelPicked;
     public event EventHandler OnForceFieldEntered;
@@ -85,8 +86,9 @@ public class Lander : MonoBehaviour
                     GameInput.Instance.IsRotatingRight() ||
                     GameInput.Instance.IsMovingUp())
                 {
-                    state = LanderState.Flying;
+                    ChangeState(LanderState.Flying);
                     rb.gravityScale = gravityScale;
+                    
                 }
                 break;
             case LanderState.Flying:
@@ -167,7 +169,7 @@ public class Lander : MonoBehaviour
 
     private IEnumerator HandleLandingPadCollision(LandingPad landingPad)
     {
-        state = LanderState.Landing;
+        ChangeState(LanderState.Landing);
 
         // wait for the lander to be stable on the landing pad for 1 second before confirming the landing
         float stableTime = 1f;
@@ -202,14 +204,9 @@ public class Lander : MonoBehaviour
         return GameManager.Instance.IsPlaying() && GameInput.Instance.IsMovingUp() && state == LanderState.Flying;
     }
 
-    public bool HasLanded()
-    {
-        return state == LanderState.Landed;
-    }
-
     public void HandleCrash(CrashReason crashReason)
     {
-        state = LanderState.Crashed;
+        ChangeState(LanderState.Crashed);
         OnCrashed?.Invoke(this, new OnCrashedEventArgs
         {
             crashReason = crashReason,
@@ -278,12 +275,19 @@ public class Lander : MonoBehaviour
             GameManager.Instance.AddScore(timeBonus);
         }
 
-        state = LanderState.Landed;
+        ChangeState(LanderState.Landed);
         OnLanded?.Invoke(this, new OnLandedEventArgs
         {
             landingSpeed = collisionSpeed,
             landingAngle = collisionAngle,
             landingScore = totalLandingScore
         });
+    }
+
+    private void ChangeState(LanderState newState)
+    {
+        if (state == newState) return;
+        state = newState;
+        OnStateChanged?.Invoke(this, EventArgs.Empty);
     }
 }

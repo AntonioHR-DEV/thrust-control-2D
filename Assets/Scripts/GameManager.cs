@@ -1,4 +1,5 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField] private LevelsListSO levelsListSO;
+    [SerializeField] private CinemachineCamera cinemachineCamera;
     private GameState state;
     private int score = 0;
     private GameLevel currentGameLevel;
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour
 
         Lander.Instance.OnLanded += Lander_OnLanded;
         Lander.Instance.OnCrashed += Lander_OnCrashed;
+        Lander.Instance.OnStateChanged += Lander_OnStateChanged;
         GameInput.Instance.OnPauseToggled += GameInput_OnPauseToggled;
     }
 
@@ -108,20 +111,20 @@ public class GameManager : MonoBehaviour
     {
         int starCount = 0;
         GameLevel gameLevel = GetGameLevelPrefab(levelIndex).GetComponent<GameLevel>();
-        
+
         // Check if has collected all coins
-        if(score - timeBonus - landingScore >= gameLevel.TotalCoinValue())
+        if (score - timeBonus - landingScore >= gameLevel.TotalCoinValue())
         {
             starCount++;
         }
         // Check if has a perfect landing
         int perfectLandingScore = 140;
-        if(landingScore >= perfectLandingScore)
+        if (landingScore >= perfectLandingScore)
         {
             starCount++;
         }
         // Check if has not used more than 80% of the time
-        if(timeBonus >= gameLevel.TimeLimit * 0.2f)
+        if (timeBonus >= gameLevel.TimeLimit * 0.2f)
         {
             starCount++;
         }
@@ -138,7 +141,7 @@ public class GameManager : MonoBehaviour
     {
         GameLevelIndex++;
         if (!CheckLevelExistance(GameLevelIndex)) return;
-        
+
         SceneLoader.LoadScene(SceneLoader.Scene.GameScene);
     }
 
@@ -185,6 +188,15 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    private void Lander_OnStateChanged(object sender, EventArgs e)
+    {
+        if (Lander.Instance.State == Lander.LanderState.Flying)
+        {
+            cinemachineCamera.Target.TrackingTarget = Lander.Instance.transform;
+            CinemachineCameraZoom2D.Instance.SetNormalOrthographicSize();
+        }
+    }
+
     private void GameInput_OnPauseToggled(object sender, EventArgs e)
     {
         TogglePause();
@@ -197,6 +209,9 @@ public class GameManager : MonoBehaviour
         Lander.Instance.transform.position = gameLevel.LanderSpawnPoint.position;
 
         currentGameLevel = gameLevel;
+
+        cinemachineCamera.Target.TrackingTarget = gameLevel.CameraStartTargetTransform;
+        CinemachineCameraZoom2D.Instance.TargetOrthographicSize = gameLevel.ZoomedOutOrthographicSize;
     }
 
     private GameObject GetGameLevelPrefab(int levelIndex)

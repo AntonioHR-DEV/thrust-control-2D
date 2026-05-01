@@ -88,8 +88,8 @@ SpriteShapeRenderer:
   m_ShapeTexture: {fileID: 2800000, guid: e7ac5e9f616e90f46b8b8c028ee13684, type: 3}
   m_Sprites: []
   m_LocalAABB:
-    m_Center: {x: -7.0063095, y: 0.40024948, z: 0}
-    m_Extent: {x: 98.56677, y: 40.049377, z: 0}
+    m_Center: {x: -4.0294724, y: 3.1176872, z: 0}
+    m_Extent: {x: 113.92728, y: 57.202423, z: 0}
   m_SpriteSortPoint: 0
 --- !u!114 &8084243165438871374
 MonoBehaviour:
@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Spline:
     m_IsOpenEnded: 0
     m_ControlPoints:
-    - position: {x: -103.989655, y: -39.319607, z: 0}
+    - position: {x: -117.325905, y: -54.084736, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -114,7 +114,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: -105.57308, y: 40.449623, z: 0}
+    - position: {x: -117.95675, y: 59.73955, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: 91.56047, y: 39.839455, z: 0}
+    - position: {x: 109.8978, y: 60.320114, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -130,7 +130,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: 91.47153, y: 32.719704, z: 0}
+    - position: {x: 108.85627, y: 34.624878, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -714,7 +714,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: 91.18202, y: 30.245855, z: 0}
+    - position: {x: 108.566765, y: 32.15103, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -722,7 +722,7 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
-    - position: {x: 90.02873, y: -39.649128, z: 0}
+    - position: {x: 107.65163, y: -52.27094, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
       mode: 0
@@ -752,10 +752,10 @@ MonoBehaviour:
   m_Creator: {fileID: 0}
   m_Modifiers: []
   m_ColliderSegment:
-  - {x: -103.989655, y: -39.319607}
-  - {x: -105.57308, y: 40.449623}
-  - {x: 91.56047, y: 39.839455}
-  - {x: 91.47153, y: 32.719704}
+  - {x: -117.325905, y: -54.084736}
+  - {x: -117.95675, y: 59.73955}
+  - {x: 109.8978, y: 60.320114}
+  - {x: 108.85627, y: 34.624878}
   - {x: -26.569962, y: 32.211414}
   - {x: -26.759605, y: 17.030018}
   - {x: -27.37952, y: 17.020748}
@@ -828,9 +828,9 @@ MonoBehaviour:
   - {x: -4.4736586, y: 12.668936}
   - {x: 9.766933, y: 12.613389}
   - {x: 9.936304, y: 30.17096}
-  - {x: 91.18202, y: 30.245855}
-  - {x: 90.02873, y: -39.649128}
-  - {x: -103.989655, y: -39.319607}
+  - {x: 108.566765, y: 32.15103}
+  - {x: 107.65163, y: -52.27094}
+  - {x: -117.325905, y: -54.084736}
   m_ShadowSegment: []
 --- !u!60 &8538777249965518548
 PolygonCollider2D:
@@ -878,10 +878,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -103.989655, y: -39.319607}
-      - {x: -105.57308, y: 40.449623}
-      - {x: 91.56047, y: 39.839455}
-      - {x: 91.47153, y: 32.719704}
+    - - {x: -117.325905, y: -54.084736}
+      - {x: -117.95675, y: 59.73955}
+      - {x: 109.8978, y: 60.320114}
+      - {x: 108.85627, y: 34.624878}
       - {x: -26.569962, y: 32.211414}
       - {x: -26.759605, y: 17.030018}
       - {x: -27.37952, y: 17.020748}
@@ -954,9 +954,9 @@ PolygonCollider2D:
       - {x: -4.4736586, y: 12.668936}
       - {x: 9.766933, y: 12.613389}
       - {x: 9.936304, y: 30.17096}
-      - {x: 91.18202, y: 30.245855}
-      - {x: 90.02873, y: -39.649128}
-      - {x: -103.989655, y: -39.319607}
+      - {x: 108.566765, y: 32.15103}
+      - {x: 107.65163, y: -52.27094}
+      - {x: -117.325905, y: -54.084736}
   m_UseDelaunayMesh: 1
 --- !u!1 &3904760275349316215
 GameObject:
@@ -984,6 +984,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -80.26, y: 24.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6141557616564580550}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5293094262014333817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 847924280849240532}
+  m_Layer: 0
+  m_Name: CameraStartTarget
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &847924280849240532
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5293094262014333817}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -8.6, y: 12.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1072,6 +1103,7 @@ Transform:
   - {fileID: 189498195369406039}
   - {fileID: 3084443518485228220}
   - {fileID: 9183603712669444019}
+  - {fileID: 847924280849240532}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4788325389759356375
@@ -1090,6 +1122,8 @@ MonoBehaviour:
   landerSpawnPoint: {fileID: 5862538928084990803}
   timeLimit: 180
   thumbnail: {fileID: 21300000, guid: 923571eb3d6a6d848a6c7ee4d5c86173, type: 3}
+  cameraStartTargetTransform: {fileID: 847924280849240532}
+  zoomedOutOrthographicSize: 44
 --- !u!1001 &96937135115192754
 PrefabInstance:
   m_ObjectHideFlags: 0

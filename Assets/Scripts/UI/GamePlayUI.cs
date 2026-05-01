@@ -5,12 +5,19 @@ using UnityEngine.UI;
 
 public class GamePlayUI : MonoBehaviour
 {
+    public static GamePlayUI Instance { get; private set; }
+
     [SerializeField] private TextMeshProUGUI levelText;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Image fuelBarFill;
     [SerializeField] private Sprite fuelBarNormalSprite;
     [SerializeField] private Sprite fuelBarLowSprite;
+
+    private void Awake()
+    {
+        Instance = this;
+    } 
 
     private void Start()
     {
