@@ -1,10 +1,17 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class LanderVisual : MonoBehaviour
 {
     [SerializeField] private ParticleSystem thrustParticleSystem;
     [SerializeField] private ParticleSystem explosionParticleSystem;
+    private CinemachineImpulseSource impulseSource;
+
+    private void Awake()
+    {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
 
     private void Start()
     {
@@ -13,6 +20,7 @@ public class LanderVisual : MonoBehaviour
 
     private void Lander_OnCrashed(object sender, Lander.OnCrashedEventArgs e)
     {
+        impulseSource.GenerateImpulse();
         gameObject.SetActive(false); // Hide the lander
         Instantiate(explosionParticleSystem, transform.position, Quaternion.identity); // Play explosion effect
     }
