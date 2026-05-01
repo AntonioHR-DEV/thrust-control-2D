@@ -1452,7 +1452,7 @@ MonoBehaviour:
   Lookahead:
     Enabled: 1
     Time: 1
-    Smoothing: 10
+    Smoothing: 30
     IgnoreY: 0
 --- !u!1 &262755012
 GameObject:
@@ -2224,7 +2224,7 @@ MonoBehaviour:
   IgnoreTimeScale: 0
   WorldUpOverride: {fileID: 0}
   ChannelMask: -1
-  UpdateMethod: 2
+  UpdateMethod: 1
   BlendUpdateMethod: 1
   LensModeOverride:
     Enabled: 0
@@ -6630,7 +6630,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 898789d5b1bde2c48b3908d95b44516e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
