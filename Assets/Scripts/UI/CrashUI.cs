@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,6 +32,16 @@ public class CrashUI : MonoBehaviour
     private void Lander_OnCrashed(object sender, Lander.OnCrashedEventArgs e)
     {
         if (TimeUpUI.Instance.IsVisible()) return;
+
+        // Start the coroutine from an active game object
+        GameManager.Instance.StartCoroutine(ShowCrashUICoroutine(e));
+    }
+
+    private IEnumerator ShowCrashUICoroutine(Lander.OnCrashedEventArgs e)
+    {
+        // Wait a moment for the explosion visual before show the Crash panel
+        float showDelay = 1f;
+        yield return new WaitForSeconds(showDelay);
 
         Show();
 
