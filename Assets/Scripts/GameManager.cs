@@ -194,6 +194,8 @@ public class GameManager : MonoBehaviour
         {
             cinemachineCamera.Target.TrackingTarget = Lander.Instance.transform;
             CinemachineCameraZoom2D.Instance.SetNormalOrthographicSize();
+
+            GamePlayUI.Instance.gameObject.SetActive(true);
         }
     }
 
@@ -212,6 +214,7 @@ public class GameManager : MonoBehaviour
 
         cinemachineCamera.Target.TrackingTarget = gameLevel.CameraStartTargetTransform;
         CinemachineCameraZoom2D.Instance.TargetOrthographicSize = gameLevel.ZoomedOutOrthographicSize;
+        GamePlayUI.Instance.gameObject.SetActive(false);
     }
 
     private GameObject GetGameLevelPrefab(int levelIndex)
