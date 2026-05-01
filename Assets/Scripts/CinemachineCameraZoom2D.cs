@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CinemachineCameraZoom2D : MonoBehaviour
 {
-    private const float NORMAL_ORTHOGRAPHIC_SIZE = 8.0f;
+    private const float NORMAL_ORTHOGRAPHIC_SIZE = 7.0f;
     public static CinemachineCameraZoom2D Instance { get; private set; }
     [SerializeField] private CinemachineCamera cinemachineCamera;
     [SerializeField] private float zoomSpeed = 2f;
