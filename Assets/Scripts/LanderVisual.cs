@@ -2,8 +2,15 @@ using UnityEngine;
 
 public class LanderVisual : MonoBehaviour
 {
+    public static LanderVisual Instance { get; private set; }
+
     [SerializeField] private ParticleSystem thrustParticleSystem;
     [SerializeField] private ParticleSystem explosionParticleSystem;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {

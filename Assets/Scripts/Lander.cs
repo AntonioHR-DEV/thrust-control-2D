@@ -112,9 +112,8 @@ public class Lander : MonoBehaviour
     {
         if (other.TryGetComponent(out Coin coin))
         {
-            // Collect the coin and destroy it
-            GameManager.Instance.AddScore(coin.CoinValue);
-            coin.DestroySelf();
+            // Collect the coin
+            coin.Collect();
 
             OnCoinPicked?.Invoke(this, EventArgs.Empty);
         }
