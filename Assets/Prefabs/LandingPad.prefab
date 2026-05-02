@@ -317,9 +317,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LandingPadLights
   redLight1: {fileID: 5013882064972306959}
   redLight2: {fileID: 4717775290613415316}
-  pulseSpeed: 6
-  minIntensity: 0.2
-  maxIntensity: 2.5
+  pulseSpeed: 20
+  minIntensity: 0.5
+  maxIntensity: 3
 --- !u!1 &7720465408247203290
 GameObject:
   m_ObjectHideFlags: 0

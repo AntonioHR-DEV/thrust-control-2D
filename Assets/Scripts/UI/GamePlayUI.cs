@@ -11,8 +11,8 @@ public class GamePlayUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Image fuelBarFill;
-    [SerializeField] private Sprite fuelBarNormalSprite;
-    [SerializeField] private Sprite fuelBarLowSprite;
+    [SerializeField] private Color fuelBarNormalColor;
+    [SerializeField] private Color fuelBarLowColor;
 
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class GamePlayUI : MonoBehaviour
         Lander.Instance.OnFuelLow += Lander_OnFuelLow;
         Lander.Instance.OnFuelPicked += Lander_OnFuelPicked;
 
-        fuelBarFill.sprite = fuelBarNormalSprite;
+        fuelBarFill.color = fuelBarNormalColor;
 
         UpdateLevelText();
         UpdateTimerText();
@@ -72,13 +72,13 @@ public class GamePlayUI : MonoBehaviour
 
     private void Lander_OnFuelLow(object sender, EventArgs e)
     {
-        if (fuelBarFill.sprite == fuelBarLowSprite) return;
-        fuelBarFill.sprite = fuelBarLowSprite;
+        if (fuelBarFill.color == fuelBarLowColor) return;
+        fuelBarFill.color = fuelBarLowColor;
     }
 
     private void Lander_OnFuelPicked(object sender, EventArgs e)
     {
-        if (fuelBarFill.sprite == fuelBarNormalSprite) return;
-        fuelBarFill.sprite = fuelBarNormalSprite;
+        if (fuelBarFill.color == fuelBarNormalColor) return;
+        fuelBarFill.color = fuelBarNormalColor;
     }
 }

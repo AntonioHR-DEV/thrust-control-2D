@@ -3113,8 +3113,8 @@ MonoBehaviour:
   timerText: {fileID: 880507806}
   scoreText: {fileID: 1628990311}
   fuelBarFill: {fileID: 2064331150}
-  fuelBarNormalSprite: {fileID: -7934735622195535887, guid: 0b83181316ed85b429f768abbe930c92, type: 3}
-  fuelBarLowSprite: {fileID: -7934735622195535887, guid: 2b4ea7eee5a953f4e837804a67c99985, type: 3}
+  fuelBarNormalColor: {r: 0, g: 1, b: 0, a: 1}
+  fuelBarLowColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &639826018
 GameObject:
   m_ObjectHideFlags: 0
@@ -8597,14 +8597,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -7934735622195535887, guid: 0b83181316ed85b429f768abbe930c92, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 97b2097789b5a2f47a971551c85724b6, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
