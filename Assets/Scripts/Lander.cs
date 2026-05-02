@@ -50,7 +50,7 @@ public class Lander : MonoBehaviour
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float fuelAmountMax = 10f;
     [SerializeField] float fuelConsumptionSpeed = .5f;
-    [SerializeField] float lowFuelThreshold = 2f;
+    [SerializeField] float lowFuelMark = 2.5f;
     [SerializeField] private float landingSpeedThreshold = 4f;
     [SerializeField] private float landingAngleThreshold = 15f;
     [SerializeField] private float gravityScale = .7f;
@@ -94,7 +94,7 @@ public class Lander : MonoBehaviour
             case LanderState.Flying:
                 if (Time.timeScale < 1) return; // Don't do anything when the game is paused
                 HandleInput();
-                if (fuelAmount < lowFuelThreshold && fuelAmount > 0f)
+                if (fuelAmount < lowFuelMark && fuelAmount > 0f)
                 {
                     OnFuelLow?.Invoke(this, EventArgs.Empty);
                 }

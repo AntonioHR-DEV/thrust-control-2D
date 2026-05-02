@@ -525,7 +525,7 @@ MonoBehaviour:
   rotationSpeed: 20
   fuelAmountMax: 10
   fuelConsumptionSpeed: 0.5
-  lowFuelThreshold: 2
+  lowFuelThreshold: 3
   landingSpeedThreshold: 4
   landingAngleThreshold: 15
   gravityScale: 0.7
