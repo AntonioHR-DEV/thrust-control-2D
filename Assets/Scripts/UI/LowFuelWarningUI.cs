@@ -49,9 +49,8 @@ public class LowFuelWarningUI : MonoBehaviour
 
     private void GameManager_OnGameStateChanged(object sender, EventArgs e)
     {
-        if (!isWarningActive) return;
+        if (!isWarningActive && GameManager.Instance.State != GameManager.GameState.GameOver) return;
         isWarningActive = false;
-
         if (pulseCoroutine != null) StopCoroutine(pulseCoroutine);
         StartCoroutine(FadeOutRoutine());
     }
