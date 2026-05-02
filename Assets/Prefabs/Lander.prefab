@@ -543,6 +543,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LanderVisual
   thrustParticleSystem: {fileID: 993572057918173514}
   explosionParticleSystem: {fileID: 7210908723905982461, guid: 2504b9e4d554ab244830cc0bf7ae61fb, type: 3}
+  landerSprite: {fileID: 3407688107450554947}
+  flashDuration: 0.2
 --- !u!114 &5452896857661160984
 MonoBehaviour:
   m_ObjectHideFlags: 0

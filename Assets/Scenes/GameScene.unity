@@ -3112,9 +3112,14 @@ MonoBehaviour:
   levelText: {fileID: 1695128628}
   timerText: {fileID: 880507806}
   scoreText: {fileID: 1628990311}
-  fuelBarFill: {fileID: 2064331150}
-  fuelBarNormalColor: {r: 0, g: 1, b: 0, a: 1}
-  fuelBarLowColor: {r: 1, g: 0, b: 0, a: 1}
+  fuelBarImage: {fileID: 2064331150}
+  pulseScale: 1.25
+  pulseDuration: 0.25
+  blinkCount: 4
+  blinkInterval: 0.1
+  normalColor: {r: 0.2, g: 0.8, b: 0.2, a: 1}
+  fuelLowColor: {r: 1, g: 0, b: 0, a: 1}
+  flashColor: {r: 1, g: 1, b: 0.2, a: 1}
 --- !u!1 &639826018
 GameObject:
   m_ObjectHideFlags: 0

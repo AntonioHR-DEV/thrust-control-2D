@@ -122,7 +122,7 @@ public class Lander : MonoBehaviour
         {
             // Collect the fuel and destroy it
             AddFuel(fuel.FuelAmount);
-            fuel.DestroySelf();
+            fuel.Collect();
 
             OnFuelPicked?.Invoke(this, EventArgs.Empty);
         }
