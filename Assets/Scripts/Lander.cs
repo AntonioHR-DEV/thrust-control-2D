@@ -84,7 +84,7 @@ public class Lander : MonoBehaviour
                 if (Time.timeScale < 1) return; // Don't switch state if the game is paused
                 if (GameInput.Instance.IsRotatingLeft() ||
                     GameInput.Instance.IsRotatingRight() ||
-                    GameInput.Instance.IsMovingUp())
+                    GameInput.Instance.IsThrusting())
                 {
                     ChangeState(LanderState.Flying);
                     rb.gravityScale = gravityScale;
@@ -200,7 +200,7 @@ public class Lander : MonoBehaviour
     public bool IsThrusting()
     {
         if (fuelAmount <= 0) return false;
-        return GameManager.Instance.IsPlaying() && GameInput.Instance.IsMovingUp() && state == LanderState.Flying;
+        return GameManager.Instance.IsPlaying() && GameInput.Instance.IsThrusting() && state == LanderState.Flying;
     }
 
     public void HandleCrash(CrashReason crashReason)
@@ -220,7 +220,7 @@ public class Lander : MonoBehaviour
 
         if (GameInput.Instance.IsRotatingLeft() ||
            GameInput.Instance.IsRotatingRight() ||
-           GameInput.Instance.IsMovingUp())
+           GameInput.Instance.IsThrusting())
         {
             // Consume fuel when thrusting or rotating
             fuelAmount -= fuelConsumptionSpeed * Time.deltaTime;
@@ -238,7 +238,7 @@ public class Lander : MonoBehaviour
         }
 
         // Thrust the lander
-        if (GameInput.Instance.IsMovingUp())
+        if (GameInput.Instance.IsThrusting())
         {
             Vector2 thrustDirection = transform.up; // Thrust in the direction the lander is facing
             rb.AddForce(thrustDirection * thrustPower * Time.deltaTime);

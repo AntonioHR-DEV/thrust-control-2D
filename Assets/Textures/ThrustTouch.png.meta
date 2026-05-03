@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4fbec367efc0e1e40a07e94a5b01115a
+guid: f2458dc6c3d3a4641a18e9fc79b36e36
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5572937966038668630
-    second: menu_background_0
+      213: -7446379998305411890
+    second: ThrustTouch_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: menu_background_0
+      name: ThrustTouch_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1672
-        height: 941
+        x: 24
+        y: 25
+        width: 463
+        height: 463
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 655d50dad8d075d40800000000000000
-      internalID: 5572937966038668630
+      spriteID: ecc9e6a18d429a890800000000000000
+      internalID: -7446379998305411890
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      menu_background_0: 5572937966038668630
+      ThrustTouch_0: -7446379998305411890
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

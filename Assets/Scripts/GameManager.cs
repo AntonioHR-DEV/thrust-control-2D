@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
             case GameState.WaitingToStart:
                 if (GameInput.Instance.IsRotatingLeft() ||
                     GameInput.Instance.IsRotatingRight() ||
-                    GameInput.Instance.IsMovingUp())
+                    GameInput.Instance.IsThrusting())
                 {
                     state = GameState.Playing;
                     OnGameStateChanged?.Invoke(this, EventArgs.Empty);

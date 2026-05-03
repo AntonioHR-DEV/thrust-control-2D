@@ -7,7 +7,7 @@
             "id": "6400a95d-5794-4d24-80a5-5fe22ecc17cb",
             "actions": [
                 {
-                    "name": "MoveUp",
+                    "name": "Thrust",
                     "type": "Button",
                     "id": "b9fddb66-f302-4511-bcff-cbf713db6dfc",
                     "expectedControlType": "",
@@ -51,7 +51,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MoveUp",
+                    "action": "Thrust",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

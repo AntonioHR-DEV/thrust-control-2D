@@ -24,6 +24,15 @@ public class GameInput : MonoBehaviour
 
     private InputActions inputActions;
 
+    // Touch flags
+    private bool touchThrust;
+    private bool touchRotateLeft;
+    private bool touchRotateRight;
+
+    public void SetTouchThrust(bool held)       => touchThrust = held;
+    public void SetTouchRotateLeft(bool held)   => touchRotateLeft = held;
+    public void SetTouchRotateRight(bool held)  => touchRotateRight = held;
+
     private void Awake()
     {
         Instance = this;
@@ -56,19 +65,19 @@ public class GameInput : MonoBehaviour
         inputActions.Dispose();
     }
 
-    public bool IsMovingUp()
+    public bool IsThrusting()
     {
-        return inputActions.Player.MoveUp.IsPressed();
+        return inputActions.Player.Thrust.IsPressed() || touchThrust;
     }
 
     public bool IsRotatingLeft()
     {
-        return inputActions.Player.RotateLeft.IsPressed();
+        return inputActions.Player.RotateLeft.IsPressed() || touchRotateLeft;
     }
 
     public bool IsRotatingRight()
     {
-        return inputActions.Player.RotateRight.IsPressed();
+        return inputActions.Player.RotateRight.IsPressed() || touchRotateRight;
     }
 
     public string GetBindingText(Binding binding)
@@ -77,7 +86,7 @@ public class GameInput : MonoBehaviour
         {
             default:
             case Binding.Thrust:
-                return inputActions.Player.MoveUp.bindings[0].ToDisplayString();
+                return inputActions.Player.Thrust.bindings[0].ToDisplayString();
             case Binding.Rotate_Left:
                 return inputActions.Player.RotateLeft.bindings[0].ToDisplayString();
             case Binding.Rotate_Right:
@@ -99,7 +108,7 @@ public class GameInput : MonoBehaviour
         {
             default:
             case Binding.Thrust:
-                inputAction = inputActions.Player.MoveUp;
+                inputAction = inputActions.Player.Thrust;
                 break;
             case Binding.Rotate_Left:
                 inputAction = inputActions.Player.RotateLeft;
