@@ -1154,7 +1154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameLevel
   levelIndex: 4
   landerSpawnPoint: {fileID: 5862538928084990803}
-  timeLimit: 130
+  timeLimit: 140
   thumbnail: {fileID: 21300000, guid: 77f49212fb72c524b86e633d5e4f77a0, type: 3}
   cameraStartTargetTransform: {fileID: 8814116992871246590}
   zoomedOutOrthographicSize: 48
@@ -2824,7 +2824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4415353376248669299, guid: 8d5287a2f3af39d409b2450ca2532d2b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -43.27
+      value: -38.66
       objectReference: {fileID: 0}
     - target: {fileID: 4415353376248669299, guid: 8d5287a2f3af39d409b2450ca2532d2b, type: 3}
       propertyPath: m_LocalPosition.z

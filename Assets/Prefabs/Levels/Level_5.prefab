@@ -562,6 +562,14 @@ MonoBehaviour:
       spriteIndex: 0
       corner: 1
       m_CornerMode: 1
+    - position: {x: 60.45147, y: 6.267031, z: 0}
+      leftTangent: {x: 0, y: 0, z: 0}
+      rightTangent: {x: 0, y: 0, z: 0}
+      mode: 0
+      height: 1
+      spriteIndex: 0
+      corner: 1
+      m_CornerMode: 1
     - position: {x: 53.28442, y: 4.640779, z: 0}
       leftTangent: {x: 0, y: 0, z: 0}
       rightTangent: {x: 0, y: 0, z: 0}
@@ -809,6 +817,7 @@ MonoBehaviour:
   - {x: 64.409615, y: -21.673782}
   - {x: 67.93296, y: -21.60515}
   - {x: 67.78879, y: 4.9688196}
+  - {x: 60.45147, y: 6.267031}
   - {x: 53.28442, y: 4.640779}
   - {x: 53.478287, y: -5.3190746}
   - {x: 52.51337, y: -5.300434}
@@ -935,6 +944,7 @@ PolygonCollider2D:
       - {x: 64.409615, y: -21.673782}
       - {x: 67.93296, y: -21.60515}
       - {x: 67.78879, y: 4.9688196}
+      - {x: 60.45147, y: 6.267031}
       - {x: 53.28442, y: 4.640779}
       - {x: 53.478287, y: -5.3190746}
       - {x: 52.51337, y: -5.300434}
@@ -1120,7 +1130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameLevel
   levelIndex: 5
   landerSpawnPoint: {fileID: 5862538928084990803}
-  timeLimit: 180
+  timeLimit: 140
   thumbnail: {fileID: 21300000, guid: 923571eb3d6a6d848a6c7ee4d5c86173, type: 3}
   cameraStartTargetTransform: {fileID: 847924280849240532}
   zoomedOutOrthographicSize: 44

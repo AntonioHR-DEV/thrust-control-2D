@@ -1874,8 +1874,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3140816207694870678}
+  - component: {fileID: 2380125563800048162}
+  - component: {fileID: 7055592867051944146}
   m_Layer: 5
-  m_Name: KeyBindingsController
+  m_Name: KeyBindingsControls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1904,6 +1906,30 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -419}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &2380125563800048162
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6691715849895376851}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &7055592867051944146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6691715849895376851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25ad9eac2ae2f2245b2f12a943115119, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KeyBindingsControlsVisibility
 --- !u!1 &6825267399848630245
 GameObject:
   m_ObjectHideFlags: 0
@@ -3446,7 +3472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5232294028880724515}
   m_Layer: 5
-  m_Name: VolumeController
+  m_Name: VolumeControls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
