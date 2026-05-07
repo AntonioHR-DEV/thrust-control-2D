@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class ScreenshotTaker : MonoBehaviour
 {
+    public static ScreenshotTaker Instance { get; private set; }
+
     [Header("Settings")]
     [SerializeField] private Key screenshotKey = Key.F12;
     [SerializeField] private int superSize = 1; // 1 = normal, 2 = 2x resolution, 4 = 4x
@@ -13,6 +15,14 @@ public class ScreenshotTaker : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
         screenshotFolder = Path.Combine(Application.dataPath, "../Screenshots");
 
         if (!Directory.Exists(screenshotFolder))
