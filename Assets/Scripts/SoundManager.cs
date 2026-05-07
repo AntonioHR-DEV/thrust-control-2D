@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
 
     public static SoundManager Instance { get; private set; }
 
-    private static float soundVolume = .6f;
+    private static float soundVolume = 1f;
     private static bool soundVolumeLoaded = false;
 
     [SerializeField] private AudioClip coinPickupSound;

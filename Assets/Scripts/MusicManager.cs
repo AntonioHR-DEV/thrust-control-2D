@@ -6,7 +6,7 @@ public class MusicManager : MonoBehaviour
 
     public static MusicManager Instance { get; private set; }
 
-    private static float musicVolume = 0.5f;
+    private static float musicVolume = 1f;
 
     [SerializeField] private AudioClip musicClip;
     private AudioSource audioSource;

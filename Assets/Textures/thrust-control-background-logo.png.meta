@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4fbec367efc0e1e40a07e94a5b01115a
+guid: 8be39d12d1f6bab429d379c979ef4388
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5572937966038668630
-    second: menu_background_0
+      213: -2064471231690426833
+    second: thrust-control-cover-image_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,6 +97,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -113,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: menu_background_0
+      name: thrust-control-cover-image_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 655d50dad8d075d40800000000000000
-      internalID: 5572937966038668630
+      spriteID: f2634125a568953e0800000000000000
+      internalID: -2064471231690426833
       vertices: []
       indices: 
       edges: []
@@ -148,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      menu_background_0: 5572937966038668630
+      thrust-control-cover-image_0: -2064471231690426833
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
